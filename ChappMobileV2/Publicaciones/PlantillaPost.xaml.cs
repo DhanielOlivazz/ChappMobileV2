@@ -5,5 +5,7 @@ public partial class PlantillaPost : ContentView
 	public PlantillaPost()
 	{
 		InitializeComponent();
+
 	}
+    
 }

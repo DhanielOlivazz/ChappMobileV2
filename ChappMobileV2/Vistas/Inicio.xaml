@@ -40,9 +40,10 @@
         <BoxView HeightRequest="1"
                 BackgroundColor="#093A4F"          
                 HorizontalOptions="FillAndExpand"/>
+        <ScrollView>
+            <StackLayout Padding="5" x:Name="PublicacionesLayout">
+            </StackLayout>
+        </ScrollView>
         
-        <ContentView Padding="5">
-            <publicaciones:PlantillaPost/>
-        </ContentView>
     </VerticalStackLayout>
 </ContentView>
