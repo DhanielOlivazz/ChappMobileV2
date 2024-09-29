@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChappMobileV2.Publicaciones.PlantillaPost">
+    <StackLayout>
+        <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="5">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.RowSpan="4"
+                       Grid.Column="0"
+                       Source="dotnet_bot.png"/>
+
+                <Label Grid.Column="1"
+                       Grid.Row="0"
+                       Margin="2,0,0,0"
+                       Text="Manposteria"
+                       FontAttributes="Bold"
+                       FontSize="Subtitle"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
+                
+                <Label Grid.Column="1"
+                       Margin="2,0,0,0"
+                       Grid.Row="1"
+                       Text="Servicios en trabajos de mampostería de tipo castillo o confinada."
+                       FontSize="Body"
+                       TextColor="Black"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"/>
+
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <HorizontalStackLayout VerticalOptions="Center">
+                        <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
+                        <!-- Imagen del símbolo de ubicación -->
+                        <Label Text="Esteli" VerticalOptions="Center" TextColor="Black" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <Grid Padding="5" Grid.Row="3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <BoxView HeightRequest="1" BackgroundColor="#093A4F" HorizontalOptions="FillAndExpand" Grid.Row="0"/>
+                    <Button Grid.Row="1"
+                            Margin="50,10,50,0"
+                            Text="Más"
+                            BackgroundColor="#093A4F"
+                            TextColor="White"/>
+                </Grid>
+                
+                
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentView>
