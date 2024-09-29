@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tab="clr-namespace:ChappMobileV2.Menus"
+             xmlns:local="clr-namespace:ChappMobileV2.Vistas"
+             x:Class="ChappMobileV2.Vistas.Inicio">
+    <VerticalStackLayout>
+        <Grid Padding="10" BackgroundColor="White">
+            <Grid.ColumnDefinitions>
+                <!-- Columna para el texto Publicaciones -->
+                <ColumnDefinition Width="*" />
+                <!-- Columna para el SearchBar -->
+                <ColumnDefinition Width="1.25*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Label de Publicaciones -->
+            <Label Grid.Column="0"
+               Text="Publicaciones"
+               FontSize="Subtitle"
+               TextColor="Black"
+               VerticalOptions="Center"
+               HorizontalOptions="Start" />
+
+            <!-- SearchBar dentro de un Frame -->
+            <Frame Grid.Column="1"
+               Padding="0"
+               BackgroundColor="White"
+               CornerRadius="15"
+               HasShadow="True"
+               VerticalOptions="Center">
+
+                <SearchBar Placeholder="Buscar..."
+                       PlaceholderColor="Grey"
+                       VerticalOptions="Center"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="Transparent" />
+            </Frame>
+        </Grid>
+        <BoxView HeightRequest="1"
+                BackgroundColor="#487FEB"          
+                HorizontalOptions="FillAndExpand"/>
+    </VerticalStackLayout>
+</ContentView>
