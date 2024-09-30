@@ -9,7 +9,8 @@ public partial class Inicio : ContentView
 	public Inicio()
 	{
 		InitializeComponent();
-        RepetirPlantillaPost(3);
+        RepetirPlantillaPost(20);
+
     }
     private void RepetirPlantillaPost(int cantidad)
     {
