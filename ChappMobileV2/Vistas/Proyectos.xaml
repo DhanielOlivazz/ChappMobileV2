@@ -2,10 +2,53 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChappMobileV2.Vistas.Proyectos">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <StackLayout Padding="10">
+        <!-- Contenedor para la lista de chats -->
+        <ContentView IsVisible="{Binding IsChatListVisible}">
+            <CollectionView ItemsSource="{Binding Chats}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Image Source="{Binding ProfileImage}" WidthRequest="50" HeightRequest="50" />
+                            <StackLayout Orientation="Vertical" Padding="10,0">
+                                <Label Text="{Binding UserName}" FontAttributes="Bold" />
+                                <Label Text="{Binding LastMessage}" FontSize="Small" />
+                            </StackLayout>
+                            <!-- Navegación al chat individual -->
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentView}}, Path=BindingContext.NavigateToChatCommand}" 
+                                    CommandParameter="{Binding ChatId}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ContentView>
+
+        <!-- Contenedor para los detalles del chat -->
+        <ContentView IsVisible="{Binding IsChatDetailVisible}">
+            <StackLayout>
+                <CollectionView ItemsSource="{Binding Messages}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5">
+                                <Label Text="{Binding UserName}" FontAttributes="Bold" />
+                                <Label Text="{Binding Content}" FontSize="Medium" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Entrada para enviar un nuevo mensaje -->
+                <StackLayout Orientation="Horizontal" Padding="10,5">
+                    <Entry x:Name="MessageEntry" Placeholder="Escribe un mensaje..." HorizontalOptions="FillAndExpand" />
+                    <Button Text="Enviar" Command="{Binding SendMessageCommand}" CommandParameter="{Binding Text, Source={x:Reference MessageEntry}}" />
+                </StackLayout>
+
+                <!-- Botón para volver a la lista de chats -->
+                <Button Text="Volver a chats" Command="{Binding GoBackToChatsCommand}" />
+            </StackLayout>
+        </ContentView>
+    </StackLayout>
 </ContentView>
