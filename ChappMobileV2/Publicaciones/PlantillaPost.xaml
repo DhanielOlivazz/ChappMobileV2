@@ -18,22 +18,22 @@
 
                 <Image Grid.RowSpan="4"
                        Grid.Column="0"
-                       Source="dotnet_bot.png"/>
+                       Source="{Binding Imagen}"/>
 
                 <Label Grid.Column="1"
                        Grid.Row="0"
                        Margin="2,0,0,0"
-                       Text="Manposteria"
+                       Text="{Binding Titulo}"
                        FontAttributes="Bold"
                        FontSize="Subtitle"
                        TextColor="Black"
                        VerticalOptions="Center"
                        HorizontalOptions="Start"/>
-                
+
                 <Label Grid.Column="1"
                        Margin="2,0,0,0"
                        Grid.Row="1"
-                       Text="Servicios en trabajos de mampostería de tipo castillo o confinada."
+                       Text="{Binding Descripcion}"
                        FontSize="Body"
                        TextColor="Black"
                        VerticalOptions="Center"
@@ -42,8 +42,7 @@
                 <Grid Grid.Row="2" Grid.Column="1">
                     <HorizontalStackLayout VerticalOptions="Center">
                         <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
-                        <!-- Imagen del símbolo de ubicación -->
-                        <Label Text="Esteli" VerticalOptions="Center" TextColor="Black" />
+                        <Label Text="{Binding Ubicacion}" VerticalOptions="Center" TextColor="Black" />
                     </HorizontalStackLayout>
                 </Grid>
 
