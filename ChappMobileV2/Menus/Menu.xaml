@@ -12,29 +12,27 @@
             <!-- Contenido -->
         </Grid.RowDefinitions>
 
-        <!-- Encabezado con logo y pestañas -->
         <HorizontalStackLayout Grid.Row="0" BackgroundColor="#093A4F" Padding="10" Spacing="15">
-            <!-- Logo de la aplicación -->
-            <Image Source="chapp.png" WidthRequest="100" HeightRequest="50"/>
+            <!-- Logo de la aplicación, alineado a la izquierda -->
+            <Image Source="chapp.png" WidthRequest="100" HeightRequest="50" HorizontalOptions="Start"/>
 
-            <!-- Espaciador para alinear las pestañas a la derecha -->
-            <Label HorizontalOptions="FillAndExpand"/>
+            <!-- Pestañas simuladas (Inicio, Perfil, Proyectos), alineadas a la derecha -->
+            <HorizontalStackLayout HorizontalOptions="End">
+                <VerticalStackLayout>
+                    <Button x:Name="InicioButton" Text="Inicio" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
+                    <BoxView x:Name="InicioUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="True" />
+                </VerticalStackLayout>
 
-            <!-- Pestañas simuladas (Inicio, Perfil, Proyectos) -->
-            <VerticalStackLayout>
-                <Button x:Name="InicioButton" Text="Inicio" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
-                <BoxView x:Name="InicioUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="True" />
-            </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Button x:Name="PerfilButton" Text="Perfil" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
+                    <BoxView x:Name="PerfilUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
+                </VerticalStackLayout>
 
-            <VerticalStackLayout>
-                <Button x:Name="PerfilButton" Text="Perfil" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
-                <BoxView x:Name="PerfilUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout>
-                <Button x:Name="ProyectosButton" Text="Proyectos" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
-                <BoxView x:Name="ProyectosUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
-            </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Button x:Name="ProyectosButton" Text="Proyectos" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
+                    <BoxView x:Name="ProyectosUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
         </HorizontalStackLayout>
 
         <!-- Contenido de la página que cambia según la pestaña seleccionada -->

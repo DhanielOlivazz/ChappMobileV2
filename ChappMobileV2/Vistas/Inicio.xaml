@@ -2,42 +2,53 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tab="clr-namespace:ChappMobileV2.Menus"
+             xmlns:publicaciones="clr-namespace:ChappMobileV2.Publicaciones"
              xmlns:local="clr-namespace:ChappMobileV2.Vistas"
              x:Class="ChappMobileV2.Vistas.Inicio">
-    <VerticalStackLayout>
-        <Grid Padding="10" BackgroundColor="White">
-            <Grid.ColumnDefinitions>
-                <!-- Columna para el texto Publicaciones -->
-                <ColumnDefinition Width="*" />
-                <!-- Columna para el SearchBar -->
-                <ColumnDefinition Width="1.25*" />
-            </Grid.ColumnDefinitions>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid Padding="10" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <!-- Columna para el texto Publicaciones -->
+                    <ColumnDefinition Width="*" />
+                    <!-- Columna para el SearchBar -->
+                    <ColumnDefinition Width="1.25*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Label de Publicaciones -->
-            <Label Grid.Column="0"
-               Text="Publicaciones"
-               FontSize="Subtitle"
-               TextColor="Black"
-               VerticalOptions="Center"
-               HorizontalOptions="Start" />
+                <!-- Label de Publicaciones -->
+                <Label Grid.Column="0"
+           Text="Publicaciones"
+           FontSize="Subtitle"
+           TextColor="Black"
+           VerticalOptions="Center"
+           HorizontalOptions="Start" />
 
-            <!-- SearchBar dentro de un Frame -->
-            <Frame Grid.Column="1"
-               Padding="0"
-               BackgroundColor="White"
-               CornerRadius="15"
-               HasShadow="True"
-               VerticalOptions="Center">
+                <!-- SearchBar dentro de un Frame -->
+                <Frame Grid.Column="1"
+           Padding="0"
+           BackgroundColor="White"
+           CornerRadius="15"
+           HasShadow="True"
+           VerticalOptions="Center">
 
-                <SearchBar Placeholder="Buscar..."
-                       PlaceholderColor="Grey"
-                       VerticalOptions="Center"
-                       HorizontalOptions="FillAndExpand"
-                       BackgroundColor="Transparent" />
-            </Frame>
-        </Grid>
-        <BoxView HeightRequest="1"
-                BackgroundColor="#487FEB"          
-                HorizontalOptions="FillAndExpand"/>
-    </VerticalStackLayout>
+                    <SearchBar Placeholder="Buscar..."
+                   PlaceholderColor="Grey"
+                   VerticalOptions="Center"
+                   HorizontalOptions="FillAndExpand"
+                   BackgroundColor="Transparent" />
+                </Frame>
+            </Grid>
+            <BoxView HeightRequest="1"
+            BackgroundColor="#093A4F"          
+            HorizontalOptions="FillAndExpand"/>
+            <CollectionView x:Name="PublicacionesCollectionView" 
+                            ItemsSource="{Binding Publicaciones}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <publicaciones:PlantillaPost/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentView>

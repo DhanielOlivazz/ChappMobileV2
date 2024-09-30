@@ -59,6 +59,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\chapp.png" />
 	  <None Remove="Resources\Images\chapp2.png" />
+	  <None Remove="Resources\Images\ubicacion_icono.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -69,6 +70,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Menus\Menu.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Publicaciones\PlantillaPost.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Vistas\Inicio.xaml">
