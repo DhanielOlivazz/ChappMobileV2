@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ChappMobileV2.Services;
+using Microsoft.Extensions.Logging;
 
 namespace ChappMobileV2
 {
@@ -16,7 +17,7 @@ namespace ChappMobileV2
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

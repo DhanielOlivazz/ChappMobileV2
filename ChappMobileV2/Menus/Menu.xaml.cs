@@ -1,10 +1,12 @@
+using ChappMobileV2.Services;
 using ChappMobileV2.Vistas;
 
 namespace ChappMobileV2.Menus;
 
 public partial class Menu : ContentPage
 {
-	public Menu()
+
+    public Menu()
 	{
 		InitializeComponent();
 	}
@@ -18,6 +20,7 @@ public partial class Menu : ContentPage
         // Cambiar el contenido según la pestaña seleccionada
         if (sender == InicioButton)
         {
+
             MainContent.Content = new Inicio(); 
             InicioUnderline.IsVisible = true;   
         }
