@@ -4,14 +4,13 @@
              xmlns:local="clr-namespace:ChappMobileV2.Converters"
              x:Class="ChappMobileV2.Vistas.Proyectos">
     <ContentView.Resources>
-        <!-- Definición de convertidores -->
         <local:BoolToAlignmentConverter x:Key="BoolToAlignmentConverter" />
         <local:BoolToColorConverter x:Key="BoolToColorConverter" />
     </ContentView.Resources>
 
-    <StackLayout Padding="10">
-        <!-- Contenedor para la lista de chats -->
-        <ContentView IsVisible="{Binding IsChatListVisible}">
+    <Grid RowDefinitions="*, Auto" Padding="10">
+        <!-- Lista de chats -->
+        <ContentView IsVisible="{Binding IsChatListVisible}" Grid.Row="0">
             <CollectionView ItemsSource="{Binding Chats}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -33,24 +32,31 @@
             </CollectionView>
         </ContentView>
 
-        <!-- Contenedor para los detalles del chat -->
-        <ContentView IsVisible="{Binding IsChatDetailVisible}">
-            <StackLayout>
-                <CollectionView ItemsSource="{Binding Messages}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="5"
-                                         HorizontalOptions="{Binding IsOwnMessage, Converter={StaticResource BoolToAlignmentConverter}}">
-                                <Frame CornerRadius="10" Padding="10" HasShadow="False"
-                                       BackgroundColor="{Binding IsOwnMessage, Converter={StaticResource BoolToColorConverter}}">
-                                    <Label Text="{Binding Content}" FontSize="Medium" TextColor="White"/>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+        <!-- Detalles del chat -->
+        <ContentView IsVisible="{Binding IsChatDetailVisible}" Grid.Row="0">
+            <ScrollView>
+                <StackLayout>
+                    <CollectionView ItemsSource="{Binding Messages}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="5"
+                                             HorizontalOptions="{Binding IsOwnMessage, Converter={StaticResource BoolToAlignmentConverter}}">
+                                    <Frame CornerRadius="10" Padding="10" HasShadow="False"
+                                           BackgroundColor="{Binding IsOwnMessage, Converter={StaticResource BoolToColorConverter}}">
+                                        <Label Text="{Binding Content}" FontSize="Medium" TextColor="White"/>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </ContentView>
 
-                <!-- Entrada para enviar un nuevo mensaje -->
+        <!-- Caja de texto y botón de volver a chats visibles solo cuando se muestran los detalles del chat -->
+        <ContentView IsVisible="{Binding IsChatDetailVisible}" Grid.Row="1">
+            <StackLayout>
+                <!-- Entrada para enviar mensajes -->
                 <StackLayout Orientation="Horizontal" Padding="10,5">
                     <Entry Text="{Binding NewMessage}" Placeholder="Escribe un mensaje..." HorizontalOptions="FillAndExpand" />
                     <Button Text="Enviar" Command="{Binding SendMessageCommand}" BackgroundColor="#093A4F" />
@@ -60,5 +66,5 @@
                 <Button Text="Volver a chats" BackgroundColor="#093A4F" Command="{Binding GoBackToChatsCommand}" />
             </StackLayout>
         </ContentView>
-    </StackLayout>
+    </Grid>
 </ContentView>
