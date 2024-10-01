@@ -59,7 +59,13 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\chapp.png" />
 	  <None Remove="Resources\Images\chapp2.png" />
+	  <None Remove="Resources\Images\contact_icon.png" />
+	  <None Remove="Resources\Images\edit_icon.png" />
+	  <None Remove="Resources\Images\email_icon.png" />
+	  <None Remove="Resources\Images\pasador_de_ubicacion.png" />
+	  <None Remove="Resources\Images\profile_image.png" />
 	  <None Remove="Resources\Images\ubicacion_icono.png" />
+	  <None Remove="Resources\Images\user_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>

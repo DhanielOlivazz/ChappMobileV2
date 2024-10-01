@@ -95,8 +95,8 @@ namespace ChappMobileV2.ViewModels
             // Inicialización de la colección de chats
             Chats = new ObservableCollection<Chat>
             {
-                new Chat { ChatId = 1, UserName = "Juan", LastMessage = "Hola, ¿cómo estás?", ProfileImage = "profile1.png" },
-                new Chat { ChatId = 2, UserName = "María", LastMessage = "¿Te gustaría salir?", ProfileImage = "profile2.png" }
+                new Chat { ChatId = 1, UserName = "Juan", LastMessage = "Hola, ¿cómo estás?", ProfileImage = "dotnet_bot.png" },
+                new Chat { ChatId = 2, UserName = "María", LastMessage = "¿Te gustaría salir?", ProfileImage = "dotnet_bot.png" }
             };
 
             // Inicialización del comando de envío de mensajes
