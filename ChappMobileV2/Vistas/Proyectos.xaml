@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ChappMobileV2.Converters"
              x:Class="ChappMobileV2.Vistas.Proyectos">
+    <ContentView.Resources>
+        <!-- Definición de convertidores -->
+        <local:BoolToAlignmentConverter x:Key="BoolToAlignmentConverter" />
+        <local:BoolToColorConverter x:Key="BoolToColorConverter" />
+    </ContentView.Resources>
+
     <StackLayout Padding="10">
         <!-- Contenedor para la lista de chats -->
         <ContentView IsVisible="{Binding IsChatListVisible}">
@@ -32,9 +39,12 @@
                 <CollectionView ItemsSource="{Binding Messages}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="5">
-                                <Label Text="{Binding UserName}" FontAttributes="Bold" />
-                                <Label Text="{Binding Content}" FontSize="Medium" />
+                            <StackLayout Padding="5"
+                                         HorizontalOptions="{Binding IsOwnMessage, Converter={StaticResource BoolToAlignmentConverter}}">
+                                <Frame CornerRadius="10" Padding="10" HasShadow="False"
+                                       BackgroundColor="{Binding IsOwnMessage, Converter={StaticResource BoolToColorConverter}}">
+                                    <Label Text="{Binding Content}" FontSize="Medium" TextColor="White"/>
+                                </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -42,12 +52,12 @@
 
                 <!-- Entrada para enviar un nuevo mensaje -->
                 <StackLayout Orientation="Horizontal" Padding="10,5">
-                    <Entry x:Name="MessageEntry" Placeholder="Escribe un mensaje..." HorizontalOptions="FillAndExpand" />
-                    <Button Text="Enviar" Command="{Binding SendMessageCommand}" CommandParameter="{Binding Text, Source={x:Reference MessageEntry}}" />
+                    <Entry Text="{Binding NewMessage}" Placeholder="Escribe un mensaje..." HorizontalOptions="FillAndExpand" />
+                    <Button Text="Enviar" Command="{Binding SendMessageCommand}" BackgroundColor="#093A4F" />
                 </StackLayout>
 
                 <!-- Botón para volver a la lista de chats -->
-                <Button Text="Volver a chats" Command="{Binding GoBackToChatsCommand}" />
+                <Button Text="Volver a chats" BackgroundColor="#093A4F" Command="{Binding GoBackToChatsCommand}" />
             </StackLayout>
         </ContentView>
     </StackLayout>
