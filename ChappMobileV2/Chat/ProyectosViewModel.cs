@@ -31,7 +31,7 @@ namespace ChappMobileV2.ViewModels
             {
                 _selectedChatId = value;
                 OnPropertyChanged(nameof(SelectedChatId));
-                LoadChatMessages(); 
+                LoadChatMessages();
             }
         }
 
@@ -39,7 +39,16 @@ namespace ChappMobileV2.ViewModels
         private Dictionary<int, ObservableCollection<Message>> ChatMessages { get; set; }
 
         // Colección de mensajes del chat
-        public ObservableCollection<Message> Messages { get; set; }
+        private ObservableCollection<Message> _messages;
+        public ObservableCollection<Message> Messages
+        {
+            get => _messages;
+            set
+            {
+                _messages = value;
+                OnPropertyChanged(nameof(Messages));
+            }
+        }
 
         // Colección de chats
         public ObservableCollection<Chat> Chats { get; set; }
@@ -51,15 +60,15 @@ namespace ChappMobileV2.ViewModels
         public ICommand NavigateToChatCommand => new Command<int>(chatId =>
         {
             SelectedChatId = chatId;
-            IsChatDetailVisible = true; 
-            IsChatListVisible = false;  
+            IsChatDetailVisible = true;
+            IsChatListVisible = false;
         });
 
         // Comando para volver a la lista de chats
         public ICommand GoBackToChatsCommand => new Command(() =>
         {
-            IsChatDetailVisible = false; 
-            IsChatListVisible = true;     
+            IsChatDetailVisible = false;
+            IsChatListVisible = true;
         });
 
         // Propiedades para controlar la visibilidad de las vistas
@@ -133,11 +142,12 @@ namespace ChappMobileV2.ViewModels
                 var chat = Chats.FirstOrDefault(c => c.ChatId == SelectedChatId.Value);
                 if (chat != null)
                 {
-                    chat.LastMessage = newMessage.Content;  
+                    chat.LastMessage = newMessage.Content;
                 }
 
                 OnPropertyChanged(nameof(Chats));
 
+                // Limpiar el campo de texto después de enviar el mensaje
                 NewMessage = string.Empty;
             }
         }
@@ -148,7 +158,6 @@ namespace ChappMobileV2.ViewModels
             if (SelectedChatId.HasValue)
             {
                 Messages = new ObservableCollection<Message>(ChatMessages[SelectedChatId.Value]);
-                OnPropertyChanged(nameof(Messages));
             }
         }
 
