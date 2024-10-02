@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\captura.png" />
 	  <None Remove="Resources\Images\chapp.png" />
 	  <None Remove="Resources\Images\chapp2.png" />
 	  <None Remove="Resources\Images\contact_icon.png" />

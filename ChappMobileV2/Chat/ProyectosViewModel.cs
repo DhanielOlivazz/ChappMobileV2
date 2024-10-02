@@ -12,7 +12,7 @@ namespace ChappMobileV2.ViewModels
         private string _newMessage;
         private int? _selectedChatId;
 
-        // Propiedad vinculada al Entry (para escribir nuevos mensajes)
+        // Propiedad vinculada al Entry 
         public string NewMessage
         {
             get => _newMessage;
@@ -31,9 +31,12 @@ namespace ChappMobileV2.ViewModels
             {
                 _selectedChatId = value;
                 OnPropertyChanged(nameof(SelectedChatId));
-                LoadChatMessages(); // Cargar mensajes al seleccionar el chat
+                LoadChatMessages(); 
             }
         }
+
+        // Diccionario para almacenar los mensajes de cada chat por su ID
+        private Dictionary<int, ObservableCollection<Message>> ChatMessages { get; set; }
 
         // Colección de mensajes del chat
         public ObservableCollection<Message> Messages { get; set; }
@@ -48,15 +51,15 @@ namespace ChappMobileV2.ViewModels
         public ICommand NavigateToChatCommand => new Command<int>(chatId =>
         {
             SelectedChatId = chatId;
-            IsChatDetailVisible = true; // Muestra la vista de detalles del chat
-            IsChatListVisible = false;  // Oculta la lista de chats
+            IsChatDetailVisible = true; 
+            IsChatListVisible = false;  
         });
 
         // Comando para volver a la lista de chats
         public ICommand GoBackToChatsCommand => new Command(() =>
         {
-            IsChatDetailVisible = false; // Oculta los detalles del chat
-            IsChatListVisible = true;     // Muestra la lista de chats
+            IsChatDetailVisible = false; 
+            IsChatListVisible = true;     
         });
 
         // Propiedades para controlar la visibilidad de las vistas
@@ -85,17 +88,28 @@ namespace ChappMobileV2.ViewModels
         // Constructor
         public ProyectosViewModel()
         {
-            // Inicialización de la colección de mensajes
-            Messages = new ObservableCollection<Message>
+            // Inicialización de las colecciones de mensajes
+            ChatMessages = new Dictionary<int, ObservableCollection<Message>>
             {
-                new Message { UserName = "Juan", Content = "Hola, ¿cómo estás?", IsOwnMessage = false },
-                new Message { UserName = "Tú", Content = "Todo bien, ¿y tú?", IsOwnMessage = true }
+                {
+                    1, new ObservableCollection<Message>
+                    {
+                        new Message { UserName = "Juan", Content = "Hola, ¿cómo estás?", IsOwnMessage = false },
+                        new Message { UserName = "Tú", Content = "Todo bien, ¿y tú?", IsOwnMessage = true }
+                    }
+                },
+                {
+                    2, new ObservableCollection<Message>
+                    {
+                        new Message { UserName = "María", Content = "¿Te gustaría salir?", IsOwnMessage = false }
+                    }
+                }
             };
 
             // Inicialización de la colección de chats
             Chats = new ObservableCollection<Chat>
             {
-                new Chat { ChatId = 1, UserName = "Juan", LastMessage = "Hola, ¿cómo estás?", ProfileImage = "dotnet_bot.png" },
+                new Chat { ChatId = 1, UserName = "Juan", LastMessage = "Todo bien, ¿y tú?", ProfileImage = "dotnet_bot.png" },
                 new Chat { ChatId = 2, UserName = "María", LastMessage = "¿Te gustaría salir?", ProfileImage = "dotnet_bot.png" }
             };
 
@@ -106,12 +120,24 @@ namespace ChappMobileV2.ViewModels
         // Método para enviar mensajes
         private void SendMessage()
         {
-            if (!string.IsNullOrWhiteSpace(NewMessage))
+            if (!string.IsNullOrWhiteSpace(NewMessage) && SelectedChatId.HasValue)
             {
-                // Añadir el mensaje a la lista de mensajes
-                Messages.Add(new Message { UserName = "Tú", Content = NewMessage, IsOwnMessage = true });
+                // Añadir el mensaje a la lista de mensajes del chat actual
+                var newMessage = new Message { UserName = "Tú", Content = NewMessage, IsOwnMessage = true };
+                ChatMessages[SelectedChatId.Value].Add(newMessage);
 
-                // Limpiar el Entry después de enviar el mensaje
+                // Actualizar la colección de mensajes mostrada en la interfaz
+                Messages = new ObservableCollection<Message>(ChatMessages[SelectedChatId.Value]);
+
+                // Encontrar el chat correspondiente y actualizar su 'LastMessage'
+                var chat = Chats.FirstOrDefault(c => c.ChatId == SelectedChatId.Value);
+                if (chat != null)
+                {
+                    chat.LastMessage = newMessage.Content;  
+                }
+
+                OnPropertyChanged(nameof(Chats));
+
                 NewMessage = string.Empty;
             }
         }
@@ -121,8 +147,8 @@ namespace ChappMobileV2.ViewModels
         {
             if (SelectedChatId.HasValue)
             {
-                // Lógica para cargar los mensajes del chat basado en SelectedChatId
-                // Por ejemplo, podrías filtrar una lista de mensajes previamente cargada
+                Messages = new ObservableCollection<Message>(ChatMessages[SelectedChatId.Value]);
+                OnPropertyChanged(nameof(Messages));
             }
         }
 
@@ -136,16 +162,16 @@ namespace ChappMobileV2.ViewModels
     public class Chat
     {
         public int ChatId { get; set; }
-        public string UserName { get; set; }
-        public string LastMessage { get; set; }
-        public string ProfileImage { get; set; }
+        public string? UserName { get; set; }
+        public string? LastMessage { get; set; }
+        public string? ProfileImage { get; set; }
     }
 
     // Modelo del mensaje
     public class Message
     {
-        public string UserName { get; set; }
-        public string Content { get; set; }
+        public string? UserName { get; set; }
+        public string? Content { get; set; }
         public bool IsOwnMessage { get; set; }
     }
 }

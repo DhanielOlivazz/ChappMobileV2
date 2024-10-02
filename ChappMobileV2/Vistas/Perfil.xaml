@@ -6,13 +6,20 @@
         <Grid Padding="20" RowDefinitions="Auto,Auto,Auto,*,Auto" ColumnDefinitions="*,*">
 
             <!-- Imagen de perfil -->
-            <Image Grid.Row="0" Grid.ColumnSpan="2"
-                   Source="profile_image.png"
+            <Frame Grid.Row="0" Grid.ColumnSpan="2"
                    HeightRequest="100"
                    WidthRequest="100"
+                   CornerRadius="50"
+                   IsClippedToBounds="True"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
-                   Aspect="AspectFill"/>
+                   Padding="0"
+                   HasShadow="False">
+                <Image Source="captura.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill"/>
+            </Frame>
 
             <!-- Botón de Editar debajo de la imagen -->
             <ImageButton Grid.Row="1" Grid.ColumnSpan="2"
