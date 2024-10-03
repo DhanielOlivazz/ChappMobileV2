@@ -6,6 +6,7 @@ using ChappMobileV2.Services;
 using System.ComponentModel;
 using System.Collections.Specialized;
 using ChappMobileV2.Models;
+using System.Runtime.CompilerServices;
 namespace ChappMobileV2.Vistas;
 
 public partial class Inicio : ContentView
@@ -13,13 +14,15 @@ public partial class Inicio : ContentView
     RickandMorty service = new RickandMorty();
 
     public Inicio()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         PlantillaPost();
-
     }
+
     private async void PlantillaPost()
     {
+        loading.IsVisible = true;
+
         var data = await setCharacters();  // Esperamos a que setCharacters() termine
 
         foreach (var item in data)
@@ -27,7 +30,9 @@ public partial class Inicio : ContentView
             var plantillaPost = new PlantillaPost(item);  // Constructor que acepta el item
             PublicacionesLayout.Children.Add(plantillaPost);  // Agregar la vista a tu layout
         }
+        loading.IsVisible = false;
     }
+
     public async Task<List<Characters>> setCharacters()
     {
         var data = await service.GetPersonajeList();

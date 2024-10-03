@@ -15,6 +15,7 @@ namespace ChappMobileV2.Services
         private string _urlApi = "https://rickandmortyapi.com/api/character";
         public async Task<List<Characters>> GetPersonajeList()
         {
+            
             var client = new HttpClient();
             var response = await client.GetAsync(_urlApi);
             var responseBody = await response.Content.ReadAsStringAsync();

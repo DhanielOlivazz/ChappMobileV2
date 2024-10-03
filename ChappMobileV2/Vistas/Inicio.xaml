@@ -42,6 +42,9 @@
             <BoxView HeightRequest="1"
             BackgroundColor="#093A4F"          
             HorizontalOptions="FillAndExpand"/>
+
+            <ActivityIndicator x:Name="loading" HeightRequest="30" Color="White" IsRunning="True" IsVisible="False" VerticalOptions="Center" HorizontalOptions ="Center"/>
+
             <ScrollView>
                 <StackLayout Padding="5" x:Name="PublicacionesLayout">
                 </StackLayout>

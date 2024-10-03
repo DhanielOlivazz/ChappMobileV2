@@ -19,6 +19,9 @@
 
                     <Image Grid.RowSpan="4"
                    Grid.Column="0"
+                           HeightRequest="100"
+                           WidthRequest="100"
+                           Aspect="AspectFill"
                    Source="{Binding image}"/>
 
                     <Label Grid.Column="1"
