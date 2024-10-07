@@ -57,8 +57,13 @@ public partial class Inicio : ContentView
 
 public class Publicacion
 {
-    public string Titulo { get; set; }
-    public string Descripcion { get; set; }
-    public string Ubicacion { get; set; }
-    public string Imagen { get; set; }
+    private string? _descripcion;
+    public string? Titulo { get; set; }
+    public string Descripcion
+    {
+        get => _descripcion;
+        set => _descripcion = string.Join(" ", value.Split(' ').Take(100)); // Limitar a 100 palabras
+    }
+    public string? Ubicacion { get; set; }
+    public string? Imagen { get; set; }
 }

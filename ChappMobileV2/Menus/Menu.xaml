@@ -11,13 +11,25 @@
             <RowDefinition Height="*"/>
             <!-- Contenido -->
         </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" BackgroundColor="#093A4F" Padding="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <!-- Columna para el logo -->
+                <ColumnDefinition Width="*"/>
+                <!-- Columna flexible para el espacio -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- Columna para los botones -->
+            </Grid.ColumnDefinitions>
 
-        <HorizontalStackLayout Grid.Row="0" BackgroundColor="#093A4F" Padding="10" Spacing="15">
             <!-- Logo de la aplicación, alineado a la izquierda -->
-            <Image Source="chapp.png" WidthRequest="100" HeightRequest="50" HorizontalOptions="Start"/>
+            <Image Grid.Column="0" Source="chapp.png" WidthRequest="100" HeightRequest="50" HorizontalOptions="Start" />
 
-            <!-- Pestañas simuladas (Inicio, Perfil, Proyectos), alineadas a la derecha -->
-            <HorizontalStackLayout HorizontalOptions="End">
+            <!-- Espacio flexible que empuja los botones al borde derecho -->
+            <BoxView Grid.Column="1" Color="Transparent" HorizontalOptions="FillAndExpand" />
+
+            <!-- Pestañas simuladas (Inicio, Perfil, Proyectos, Notificaciones), alineadas al borde derecho -->
+            <HorizontalStackLayout Grid.Column="2" HorizontalOptions="End" Spacing="10">
                 <VerticalStackLayout>
                     <Button x:Name="InicioButton" Text="Inicio" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
                     <BoxView x:Name="InicioUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="True" />
@@ -32,8 +44,13 @@
                     <Button x:Name="ProyectosButton" Text="Proyectos" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
                     <BoxView x:Name="ProyectosUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
                 </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Button x:Name="NotificacionesButton" Text="Notificaciones" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
+                    <BoxView x:Name="NotificacionesUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
+                </VerticalStackLayout>
             </HorizontalStackLayout>
-        </HorizontalStackLayout>
+        </Grid>
 
         <!-- Contenido de la página que cambia según la pestaña seleccionada -->
         <ContentView Grid.Row="1" x:Name="MainContent">
