@@ -14,7 +14,7 @@ public partial class Inicio : ContentView
         InitializeComponent();
         Publicaciones = new ObservableCollection<Publicacion>();
         CargarPublicaciones();
-        BindingContext = this; // Establecer el contexto de enlace
+        BindingContext = this;
     }
 
     private void CargarPublicaciones()
@@ -53,12 +53,28 @@ public partial class Inicio : ContentView
             });
         }
     }
+    private void OnNotificacionesClicked(object sender, EventArgs e)
+    {
+        // Mostrar el Frame de notificaciones
+        NotificacionesFrame.IsVisible = true;
+    }
+
+    private void OnCerrarNotificacionesClicked(object sender, EventArgs e)
+    {
+        // Ocultar el Frame de notificaciones
+        NotificacionesFrame.IsVisible = false;
+    }
 }
 
 public class Publicacion
 {
-    public string Titulo { get; set; }
-    public string Descripcion { get; set; }
-    public string Ubicacion { get; set; }
-    public string Imagen { get; set; }
+    private string _descripcion;
+    public string? Titulo { get; set; }
+    public string Descripcion
+    {
+        get => _descripcion;
+        set => _descripcion = string.Join(" ", value.Split(' ').Take(100)); 
+    }
+    public string? Ubicacion { get; set; }
+    public string? Imagen { get; set; }
 }
