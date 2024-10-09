@@ -14,7 +14,7 @@ public partial class Inicio : ContentView
         InitializeComponent();
         Publicaciones = new ObservableCollection<Publicacion>();
         CargarPublicaciones();
-        BindingContext = this; 
+        BindingContext = this;
     }
 
     private void CargarPublicaciones()
@@ -52,6 +52,17 @@ public partial class Inicio : ContentView
                 Imagen = "dotnet_bot.png"
             });
         }
+    }
+    private void OnNotificacionesClicked(object sender, EventArgs e)
+    {
+        // Mostrar el Frame de notificaciones
+        NotificacionesFrame.IsVisible = true;
+    }
+
+    private void OnCerrarNotificacionesClicked(object sender, EventArgs e)
+    {
+        // Ocultar el Frame de notificaciones
+        NotificacionesFrame.IsVisible = false;
     }
 }
 
