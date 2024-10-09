@@ -32,8 +32,8 @@ namespace ChappMobileV2.Notis
         // Clase que representa una notificación individual
         public class Notificacion
         {
-            public string Titulo { get; set; }
-            public string Descripcion { get; set; }
+            public string? Titulo { get; set; }
+            public string? Descripcion { get; set; }
         }
     }
     

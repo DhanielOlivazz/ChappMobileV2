@@ -14,7 +14,6 @@ public partial class Menu : ContentPage
         InicioUnderline.IsVisible = false;
         PerfilUnderline.IsVisible = false;
         ProyectosUnderline.IsVisible = false;
-        NotificacionesUnderline.IsVisible = false;
 
         // Cambiar el contenido según la pestaña seleccionada
         if (sender == InicioButton)
@@ -31,11 +30,6 @@ public partial class Menu : ContentPage
         {
             MainContent.Content = new Proyectos();  
             ProyectosUnderline.IsVisible = true;   
-        }
-        else if(sender == NotificacionesButton)
-        {
-            MainContent.Content = new Notificaciones();
-            NotificacionesUnderline.IsVisible = true;
         }
     }
     

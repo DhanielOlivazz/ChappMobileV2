@@ -14,7 +14,7 @@ public partial class Inicio : ContentView
         InitializeComponent();
         Publicaciones = new ObservableCollection<Publicacion>();
         CargarPublicaciones();
-        BindingContext = this; // Establecer el contexto de enlace
+        BindingContext = this; 
     }
 
     private void CargarPublicaciones()
@@ -57,12 +57,12 @@ public partial class Inicio : ContentView
 
 public class Publicacion
 {
-    private string? _descripcion;
+    private string _descripcion;
     public string? Titulo { get; set; }
     public string Descripcion
     {
         get => _descripcion;
-        set => _descripcion = string.Join(" ", value.Split(' ').Take(100)); // Limitar a 100 palabras
+        set => _descripcion = string.Join(" ", value.Split(' ').Take(100)); 
     }
     public string? Ubicacion { get; set; }
     public string? Imagen { get; set; }

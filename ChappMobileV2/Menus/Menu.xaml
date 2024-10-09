@@ -17,19 +17,13 @@
                 <ColumnDefinition Width="Auto"/>
                 <!-- Columna para el logo -->
                 <ColumnDefinition Width="*"/>
-                <!-- Columna flexible para el espacio -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- Columna para los botones -->
             </Grid.ColumnDefinitions>
 
             <!-- Logo de la aplicación, alineado a la izquierda -->
             <Image Grid.Column="0" Source="chapp.png" WidthRequest="100" HeightRequest="50" HorizontalOptions="Start" />
 
-            <!-- Espacio flexible que empuja los botones al borde derecho -->
-            <BoxView Grid.Column="1" Color="Transparent" HorizontalOptions="FillAndExpand" />
-
             <!-- Pestañas simuladas (Inicio, Perfil, Proyectos, Notificaciones), alineadas al borde derecho -->
-            <HorizontalStackLayout Grid.Column="2" HorizontalOptions="End" Spacing="10">
+            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="10">
                 <VerticalStackLayout>
                     <Button x:Name="InicioButton" Text="Inicio" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
                     <BoxView x:Name="InicioUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="True" />
@@ -43,11 +37,6 @@
                 <VerticalStackLayout>
                     <Button x:Name="ProyectosButton" Text="Proyectos" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
                     <BoxView x:Name="ProyectosUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout>
-                    <Button x:Name="NotificacionesButton" Text="Notificaciones" TextColor="White" BackgroundColor="Transparent" Clicked="OnTabClicked" />
-                    <BoxView x:Name="NotificacionesUnderline" HeightRequest="2" BackgroundColor="White" IsVisible="False" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
         </Grid>
