@@ -36,7 +36,7 @@
         <ContentView IsVisible="{Binding IsChatDetailVisible}" Grid.Row="0">
             <ScrollView>
                 <StackLayout>
-                    <CollectionView ItemsSource="{Binding Messages}">
+                    <CollectionView ItemsSource="{Binding Messages}">   
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Padding="5"
