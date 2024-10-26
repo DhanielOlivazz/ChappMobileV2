@@ -42,7 +42,8 @@
                           HorizontalOptions="FillAndExpand"/>
 
                 <CollectionView x:Name="PublicacionesCollectionView" 
-                                ItemsSource="{Binding Publicaciones}">
+                                ItemsSource="{Binding Publicaciones}"
+                                Margin="5,0,5,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <publicaciones:PlantillaPost/>
@@ -53,7 +54,7 @@
         </ScrollView>
         
         <!-- Frame para las notificaciones emergentes -->
-        
+
         <Frame x:Name="NotificacionesFrame"
                BackgroundColor="White"
                Padding="20"
@@ -72,7 +73,6 @@
                             HorizontalOptions="Center" />
                     <local:Notificaciones />
                     <Button Text="Cerrar" Clicked="OnCerrarNotificacionesClicked" />
-
                 </StackLayout>
             </ScrollView>
             
