@@ -9,7 +9,7 @@ namespace ChappMobileV2.Controllers
 {
     public class UserController
     {
-        public Perfil lol { get; set; } = new Perfil()
+        public Perfil123 lol { get; set; } = new Perfil123()
         {
             UserName = "DanOlivazzz",
             Nombre = "Juan Daniel Olivas Martinez",

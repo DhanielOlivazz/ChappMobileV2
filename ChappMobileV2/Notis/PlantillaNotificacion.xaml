@@ -9,6 +9,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- Título de la notificación -->
@@ -31,6 +32,13 @@
                        TextColor="Black"
                        VerticalOptions="Start"  
                        HorizontalOptions="Start"/>
+
+                <Button Text="Contactar"
+                        Grid.Row="3"
+                        BackgroundColor="#093A4F"
+                        TextColor="White"
+                        CornerRadius="5"
+                        Margin="0,5,0,0"/>
             </Grid>
         </Frame>
     </StackLayout>

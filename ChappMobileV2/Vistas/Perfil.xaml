@@ -3,163 +3,241 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Controllers="clr-namespace:ChappMobileV2.Controllers"
              xmlns:publicaciones="clr-namespace:ChappMobileV2.Publicaciones"
+             xmlns:local="clr-namespace:ChappMobileV2.Publicaciones"
              x:Class="ChappMobileV2.Vistas.Perfil">
 
     <ContentView.Content>
-        <ScrollView BackgroundColor="White">
-            <Grid Padding="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid>
+            <ScrollView BackgroundColor="White">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-                <!-- Imagen de perfil -->
-                <Frame Grid.Row="0" Grid.ColumnSpan="2"
-                       HeightRequest="100"
-                       WidthRequest="100"
-                       CornerRadius="50"
-                       IsClippedToBounds="True"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
-                       Padding="0"
-                       HasShadow="False">
-                    <Image Source="captura.png"
+                    <!-- Imagen de perfil -->
+                    <Frame Grid.Row="0" Grid.ColumnSpan="2"
                            HeightRequest="100"
                            WidthRequest="100"
-                           Aspect="AspectFill"/>
-                </Frame>
-
-                <!-- Nombre del usuario y estatus -->
-                <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
-                             HorizontalOptions="Center" Padding="0,10,0,0">
-                    <Label Text="{Binding PerfilData.Nombre}"
-                           FontSize="22"
-                           FontAttributes="Bold"
+                           CornerRadius="50"
+                           IsClippedToBounds="True"
                            HorizontalOptions="Center"
-                           TextColor="Black"/>
-                    <Label Text="{Binding PerfilData.Campo}"
-                           FontSize="14"
-                           HorizontalOptions="Center"
-                           TextColor="Black"/>
-                </StackLayout>
+                           VerticalOptions="Center"
+                           Padding="0"
+                           HasShadow="False">
+                        <Image Source="captura.png"
+                               HeightRequest="100"
+                               WidthRequest="100"
+                               Aspect="AspectFill"/>
+                    </Frame>
 
-                <!-- Información del perfil -->
-                <StackLayout Grid.Row="2" Grid.ColumnSpan="2"
-                             Padding="0,10,0,0">
-                    <Label Text="Perfil"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Start"/>
-                    <!-- BoxView 1 -->
-                    <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
-
-                    <!-- Username -->
-                    <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
-                        <Image Source="user_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
-                        <Label Text="Usuario" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.UserName}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
-                    </Grid>
-
-                    <!-- Contacto -->
-                    <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
-                        <Image Source="contact_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
-                        <Label Text="Contacto" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Contacto}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
-                    </Grid>
-
-                    <!-- Email -->
-                    <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
-                        <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
-                        <Label Text="Email" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Correo}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"/>
-                    </Grid>
-
-                    <!-- Ubicacion -->
-                    <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
-                        <Image Source="pasador_de_ubicacion" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
-                        <Label Text="Ubicacion" Grid.Column="1" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Direccion}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
-                    </Grid>
-                    <Grid ColumnDefinitions="*,*" Padding="10">
-                        <Button  Grid.Column="0"
-                                 BackgroundColor="Yellow"
-                                 Text="Editar Perfil"
-                                 TextColor="White"
-                                 FontSize="14"
-                                 FontAttributes="Bold"
-                                 CornerRadius="10"
-                                 HorizontalOptions="End"
-                                 VerticalOptions="Center"
-                                 WidthRequest="120"
-                                 Margin="20,0,20,0"
-                                 Padding="10"/>
-
-                        <Button  Grid.Column="1"
-                                 BackgroundColor="Red"
-                                 Text="Cerrar Sesion"
-                                 TextColor="White"
-                                 FontSize="14"
-                                 FontAttributes="Bold"
-                                 CornerRadius="10"
-                                 HorizontalOptions="Start"
-                                 VerticalOptions="Center"
-                                 WidthRequest="120"
-                                 Margin="20,0,20,0"
-                                 Padding="10"/>
-                    </Grid>
-                    <!-- BoxView 2 (tamaño y márgenes iguales) -->
-                    <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
-                </StackLayout>
-
-                <!-- Publicaciones y botón para agregar -->
-                <Grid Grid.Row="3" Grid.ColumnSpan="2" Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,auto">
-                    <!-- Título -->
-                        <Label Text="Mis publicaciones"
-                               Grid.Column="0"
-                               FontSize="Subtitle"
-                               TextColor="#333"
+                    <!-- Nombre del usuario y estatus -->
+                    <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
+                                 HorizontalOptions="Center" Padding="0,10,0,0">
+                        <Label Text="{Binding PerfilData.Nombre}"
+                               FontSize="22"
                                FontAttributes="Bold"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"
-                               Margin="0,10,0,10" />
+                               HorizontalOptions="Center"
+                               TextColor="Black"/>
+                        <Label Text="{Binding PerfilData.Campo}"
+                               FontSize="14"
+                               HorizontalOptions="Center"
+                               TextColor="Black"/>
+                    </StackLayout>
+
+                    <!-- Información del perfil -->
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2"
+                                Padding="0,10,0,0">
+                        <Label Text="Perfil"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+                        <!-- BoxView 1 -->
+                        <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
+
+                        <!-- Username -->
+                        <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
+                            <Image Source="user_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Text="Usuario" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
+                            <Label Text="{Binding PerfilData.UserName}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!-- Contacto -->
+                        <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
+                            <Image Source="contact_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Text="Contacto" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
+                            <Label Text="{Binding PerfilData.Contacto}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!-- Email -->
+                        <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
+                            <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Text="Email" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
+                            <Label Text="{Binding PerfilData.Correo}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+
+                        <!-- Ubicacion -->
+                        <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
+                            <Image Source="pasador_de_ubicacion.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
+                            <Label Text="Ubicacion" Grid.Column="1" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0"/>
+                            <Label Text="{Binding PerfilData.Direccion}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*" Padding="10">
+                            <Button  Grid.Column="0"
+                                     BackgroundColor="Yellow"
+                                     Text="Editar Perfil"
+                                     TextColor="White"
+                                     FontSize="14"
+                                     FontAttributes="Bold"
+                                     CornerRadius="10"
+                                     HorizontalOptions="End"
+                                     VerticalOptions="Center"
+                                     WidthRequest="120"
+                                     Margin="20,0,20,0"
+                                     Padding="10"/>
+
+                            <Button  Grid.Column="1"
+                                     BackgroundColor="Red"
+                                     Text="Cerrar Sesion"
+                                     TextColor="White"
+                                     FontSize="14"
+                                     FontAttributes="Bold"
+                                     CornerRadius="10"
+                                     HorizontalOptions="Start"
+                                     VerticalOptions="Center"
+                                     WidthRequest="120"
+                                     Margin="20,0,20,0"
+                                     Padding="10"/>
+                        </Grid>
+                        <!-- BoxView 2 (tamaño y márgenes iguales) -->
+                        <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
+                    </StackLayout>
+
+                    <!-- Publicaciones y botón para agregar -->
+                    <Grid Grid.Row="3" Grid.ColumnSpan="2" Padding="10" RowDefinitions="Auto" ColumnDefinitions="*,auto">
+                        <!-- Título -->
+                        <Label Text="Mis publicaciones"
+                           Grid.Column="0"
+                           FontSize="Subtitle"
+                           TextColor="#333"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,10,0,10" />
 
                         <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Center" Margin="10,0,0,0" Spacing="2">
                             <!-- Ícono del botón -->
                             <ImageButton Source="agregar.png"
-                                         BackgroundColor="Transparent"
-                                         WidthRequest="30"
-                                         HeightRequest="30"
-                                         VerticalOptions="Center"
-                                         HorizontalOptions="Center"/>
+                                 BackgroundColor="Transparent"
+                                 WidthRequest="30"
+                                 HeightRequest="30"
+                                 Command="{Binding AbrirCrearPublicacionCommand}" 
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center"/>
                             <!-- Texto debajo del botón -->
                             <Label Text="Agregar Publicación"
-                                   FontSize="10" 
-                                   TextColor="#007BFF"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="End"/>
+                           FontSize="10" 
+                           TextColor="#007BFF"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"/>
                         </StackLayout>
 
+
+                    </Grid>
+
+                    <!-- CollectionView para las publicaciones -->
+                    <CollectionView x:Name="PublicacionesCollectionView" 
+                        Grid.Row="4" 
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Publicaciones}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <publicaciones:PlantillaPost/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    
+
                 </Grid>
+            </ScrollView>
+            <Frame x:Name="CrearPublicacionFrame"
+                    BackgroundColor="White"
+                    Padding="20"
+                    CornerRadius="10"
+                    HasShadow="True"
+                    IsVisible="{Binding IsCrearPublicacionVisible}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Margin="10">
+                <ScrollView>
+                    <StackLayout Padding="10">
+                        <Label Text="Crear Publicación"
+                                FontSize="Title"
+                                FontAttributes="Bold"
+                                TextColor="Black"
+                                HorizontalOptions="Center" />
+                        
+                        <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
+                        <Image Source="user_icon.png" 
+                               WidthRequest="100"
+                               HeightRequest="100" 
+                               HorizontalOptions="Center"
+                               Margin="10"/>
+                        
+                        <Button Text="Seleccionar"
+                                BackgroundColor="#093A4F"
+                                TextColor="White"
+                                HorizontalOptions="Center"/>
 
-                <!-- CollectionView para las publicaciones -->
-                <CollectionView x:Name="PublicacionesCollectionView" 
-                                Grid.Row="4" 
-                                Grid.ColumnSpan="2"
-                                ItemsSource="{Binding Publicaciones}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <publicaciones:PlantillaPost/>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
 
-            </Grid>
-        </ScrollView>
+                        <Label Text="Titulo"
+                               FontSize="Subtitle"
+                               Margin="5"/>
+
+                        <Entry Placeholder="Título"
+                                Text="{Binding NuevaPublicacion.Titulo}" 
+                                Margin="0,10,0,0" />
+                        
+                        <Label Text="Descripcion"
+                               FontSize="Subtitle"
+                               Margin="5"/>
+
+                        <Entry Placeholder="Descripción"
+                                Text="{Binding NuevaPublicacion.Descripcion}"
+                                Margin="0,10,0,0" />
+                        
+                        <Label Text="Ubicacion"
+                               FontSize="Subtitle"
+                               Margin="5"/>
+                        <Entry Placeholder="Ubicación"
+                                Text="{Binding NuevaPublicacion.Ubicacion}"
+                                Margin="0,10,0,0" />
+
+                        <Grid ColumnDefinitions="*,*">
+                            <Button Text="Guardar"
+                                    Grid.Column="0"
+                                    BackgroundColor="#093A4F"
+                                    TextColor="White"
+                                    Command="{Binding GuardarPublicacionCommand}"/>
+
+                            <Button Text="Cerrar" 
+                                    Grid.Column="1"
+                                    BackgroundColor="DarkRed"
+                                    TextColor="White"
+                                    Command="{Binding AbrirCrearPublicacionCommand}" />
+                        </Grid>
+
+                        
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Grid>
     </ContentView.Content>
 </ContentView>
