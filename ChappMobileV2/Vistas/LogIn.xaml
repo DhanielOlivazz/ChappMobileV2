@@ -29,9 +29,9 @@
                            HorizontalOptions="Center"/>
 
                     <!-- Usuario -->
-                    <Entry x:Name="UsernameEntry"
-                           Placeholder="Usuario"
-                           Keyboard="Text"/>
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"/>
 
                     <!-- Contraseña -->
                     <Entry x:Name="PasswordEntry"

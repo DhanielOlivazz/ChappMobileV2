@@ -30,6 +30,11 @@
                     <Entry x:Name="UsernameEntry"
                            Placeholder="Usuario"
                            Keyboard="Text"/>
+                    
+                    <!-- Email -->
+                    <Entry x:Name="emailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"/>
 
                     <!-- Contraseña -->
                     <Entry x:Name="PasswordEntry"
