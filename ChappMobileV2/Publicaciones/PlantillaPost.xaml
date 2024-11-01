@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChappMobileV2.Publicaciones.PlantillaPost">
     <StackLayout>
-        <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5" Margin="0,5,0,5">
+        <Frame BorderColor="Black" BackgroundColor="White" CornerRadius="5" Padding="5" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" VerticalOptions="Fill">
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -42,11 +42,18 @@
                        VerticalOptions="Center"
                        HorizontalOptions="Start"/>
 
-                    <Grid Grid.Row="2" Grid.Column="1">
-                        <HorizontalStackLayout VerticalOptions="Center">
+                    <Grid Grid.Row="2" Grid.Column="1" ColumnDefinitions="auto,*">
+                        <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
                             <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
                             <Label Text="{Binding Ubicacion}" VerticalOptions="Center" TextColor="Black" />
                         </HorizontalStackLayout>
+                        <Label Text="{Binding}"
+                               Grid.Column="1"
+                               x:Name="counter"
+                               TextColor="Black"
+                               HorizontalOptions="End"
+                               VerticalOptions="Center"/>
+
                     </Grid>
 
                     <!-- Botones "Más" y "Aplicar" visibles al expandir -->
@@ -58,21 +65,16 @@
                         <BoxView HeightRequest="1" BackgroundColor="#093A4F" HorizontalOptions="FillAndExpand" Grid.Row="0"/>
 
                         <!-- Sección de botones -->
-                        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
-                            <Button x:Name="MoreButton"
-                                    Text="Más"
-                                    BackgroundColor="#093A4F"
-                                    TextColor="White"
-                                    Clicked="OnMoreClicked"
-                                    Margin="10"/>
-                            <Button x:Name="AplicarButton"
-                                    Text="Aplicar"
-                                    BackgroundColor="Green"
-                                    TextColor="White"
-                                    IsVisible="False" 
-                                    Clicked="OnAplicarClicked"
-                                    Margin="10"/>
-                        </HorizontalStackLayout>
+                        <Button Grid.Row="1" 
+                            HorizontalOptions="FillAndExpand"
+                            Margin="20"
+                            VerticalOptions="Center"
+                            Text="Aplicar"
+                            BackgroundColor="#093A4F"
+                            TextColor="White"/>
+                        
+                            <!--Clicked="Button_Clicked"-->
+
                     </Grid>
             </Grid>
         </Frame>

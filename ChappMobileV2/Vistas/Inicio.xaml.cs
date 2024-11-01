@@ -2,6 +2,7 @@ using ChappMobileV2;
 using ChappMobileV2.Vistas;
 using ChappMobileV2.Menus;
 using ChappMobileV2.Publicaciones;
+using ChappMobileV2.Models;
 using System.Collections.ObjectModel;
 
 namespace ChappMobileV2.Vistas;
@@ -25,7 +26,7 @@ public partial class Inicio : ContentView
             new Publicacion
             {
                 Titulo = "Manposteria",
-                Descripcion = "Servicios en trabajos de mampostería de tipo castillo o confinada.",
+                Descripcion = "Explora nuestra aplicación y descubre una experiencia completa. Navega entre las pestañas para acceder a funciones como perfil, configuración y notificaciones. Simplifica tu día con herramientas intuitivas, accede a contenidos personalizados y mantente actualizado en todo momento. ¡Optimiza tu rutina y disfruta cada función al máximo!",
                 Ubicacion = "Esteli",
                 Imagen = "dotnet_bot.png"
             },
@@ -76,17 +77,4 @@ public partial class Inicio : ContentView
         // Ocultar el Frame de notificaciones
         NotificacionesFrame.IsVisible = false;
     }
-}
-
-public class Publicacion
-{
-    private string _descripcion;
-    public string? Titulo { get; set; }
-    public string Descripcion
-    {
-        get => _descripcion;
-        set => _descripcion = string.Join(" ", value.Split(' ').Take(100));
-    }
-    public string? Ubicacion { get; set; }
-    public string? Imagen { get; set; }
 }

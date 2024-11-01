@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using ChappMobileV2.Vistas;
+using ChappMobileV2.Models;
 using System;
 
 namespace ChappMobileV2.ViewModels
@@ -135,17 +136,16 @@ namespace ChappMobileV2.ViewModels
                 var newMessage = new Message { UserName = "Tú", Content = NewMessage, IsOwnMessage = true };
                 ChatMessages[SelectedChatId.Value].Add(newMessage);
 
-                // Actualizar la colección de mensajes mostrada en la interfaz
-                Messages = new ObservableCollection<Message>(ChatMessages[SelectedChatId.Value]);
+                // Asigna la colección de mensajes actual para que se actualice automáticamente
+                Messages = ChatMessages[SelectedChatId.Value];
 
-                // Encontrar el chat correspondiente y actualizar su 'LastMessage'
+                // Actualizar el 'LastMessage' del chat correspondiente
                 var chat = Chats.FirstOrDefault(c => c.ChatId == SelectedChatId.Value);
                 if (chat != null)
                 {
                     chat.LastMessage = newMessage.Content;
+                    OnPropertyChanged(nameof(Chats)); // Notificar cambio en la colección de chats
                 }
-
-                OnPropertyChanged(nameof(Chats));
 
                 // Limpiar el campo de texto después de enviar el mensaje
                 NewMessage = string.Empty;
@@ -157,7 +157,8 @@ namespace ChappMobileV2.ViewModels
         {
             if (SelectedChatId.HasValue)
             {
-                Messages = new ObservableCollection<Message>(ChatMessages[SelectedChatId.Value]);
+                // Asigna la colección observable directamente
+                Messages = ChatMessages[SelectedChatId.Value];
             }
         }
 
@@ -165,22 +166,5 @@ namespace ChappMobileV2.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    // Modelo del chat
-    public class Chat
-    {
-        public int ChatId { get; set; }
-        public string? UserName { get; set; }
-        public string? LastMessage { get; set; }
-        public string? ProfileImage { get; set; }
-    }
-
-    // Modelo del mensaje
-    public class Message
-    {
-        public string? UserName { get; set; }
-        public string? Content { get; set; }
-        public bool IsOwnMessage { get; set; }
     }
 }

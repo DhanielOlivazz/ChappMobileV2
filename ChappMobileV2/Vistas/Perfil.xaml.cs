@@ -1,5 +1,6 @@
 using ChappMobileV2.Vistas;
 using ChappMobileV2.Menus;
+using ChappMobileV2.Controllers;
 using ChappMobileV2.Publicaciones;
 using System.Collections.ObjectModel;
 namespace ChappMobileV2.Vistas;
@@ -7,13 +8,24 @@ namespace ChappMobileV2.Vistas;
 public partial class Perfil : ContentView
 {
     public ObservableCollection<Publicacion> Publicaciones { get; set; }
+    public DataPerfil PerfilData { get; set; }
 
     public Perfil()
 	{
 		InitializeComponent();
+        PerfilData = new DataPerfil
+        {
+            UserName = "DanOlivazzz",
+            Nombre = "Juan Daniel Olivas Martinez",
+            Contacto = "+505 22511929",
+            Correo = "nose@gmail1234",
+            Direccion = "Esteli, Nicaragua",
+            Campo = "Desarrollo de software"
+        };
         Publicaciones = new ObservableCollection<Publicacion>();
         CargarPublicaciones();
         BindingContext = this;
+        
     }
     private void CargarPublicaciones()
     {
@@ -62,5 +74,14 @@ public partial class Perfil : ContentView
         }
         public string? Ubicacion { get; set; }
         public string? Imagen { get; set; }
+    }
+    public class DataPerfil
+    {
+        public string UserName { get; set; } = "DanOlivazzz";
+        public string Nombre { get; set; } = "Juan Daniel Olivas Martinez";
+        public string Contacto { get; set; } = "+505 22511929";
+        public string Correo { get; set; } = "nose@gmail1234";
+        public string Direccion { get; set; } = "Esteli, Nicaragua";
+        public string Campo { get; set; } = "Desarrollo de software";
     }
 }
