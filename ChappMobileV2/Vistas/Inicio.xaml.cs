@@ -14,19 +14,19 @@ public partial class Inicio : ContentView
     {
         InitializeComponent();
         Publicaciones = new ObservableCollection<Publicacion>();
-        CargarPublicacionesGradualmente();
+        _ = CargarPublicacionesGradualmenteAsync(); // Llamada asíncrona sin bloqueo
         BindingContext = this;
     }
 
-    private async void CargarPublicacionesGradualmente()
+    private async Task CargarPublicacionesGradualmenteAsync()
     {
-        // Crear una lista de publicaciones para ir agregándolas de una en una
+        // Lista de publicaciones
         var listaPublicaciones = new List<Publicacion>
         {
             new Publicacion
             {
                 Titulo = "Manposteria",
-                Descripcion = "Explora nuestra aplicación y descubre una experiencia completa. Navega entre las pestañas para acceder a funciones como perfil, configuración y notificaciones. Simplifica tu día con herramientas intuitivas, accede a contenidos personalizados y mantente actualizado en todo momento. ¡Optimiza tu rutina y disfruta cada función al máximo!",
+                Descripcion = "Explora nuestra aplicación y descubre una experiencia completa...",
                 Ubicacion = "Esteli",
                 Imagen = "dotnet_bot.png"
             },
@@ -47,7 +47,7 @@ public partial class Inicio : ContentView
         };
 
         // Agregar más publicaciones con diferentes datos
-        for (int i = 4; i <= 20; i++)
+        for (int i = 4; i <= 10; i++)
         {
             listaPublicaciones.Add(new Publicacion
             {
@@ -58,11 +58,18 @@ public partial class Inicio : ContentView
             });
         }
 
-        // Agregar publicaciones gradualmente con una demora
-        foreach (var publicacion in listaPublicaciones)
+        // Tamaño de lote dinámico
+        int batchSize = Math.Min(5, listaPublicaciones.Count); // Evita lotes grandes en dispositivos lentos
+        for (int i = 0; i < listaPublicaciones.Count; i += batchSize)
         {
-            Publicaciones.Add(publicacion);
-            await Task.Delay(500); // Retraso de 500 ms entre cada carga de publicación
+            // Crear lote para agregar
+            var batch = listaPublicaciones.Skip(i).Take(batchSize).ToList();
+            foreach (var publicacion in batch)
+            {
+                Publicaciones.Add(publicacion);
+            }
+            // Retraso opcional para reducir carga en la interfaz
+            await Task.Delay(250); // Ajustar según rendimiento
         }
     }
 
