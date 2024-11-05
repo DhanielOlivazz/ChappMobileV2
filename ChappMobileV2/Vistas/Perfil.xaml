@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Controllers="clr-namespace:ChappMobileV2.Controllers"
              xmlns:publicaciones="clr-namespace:ChappMobileV2.Publicaciones"
              xmlns:local="clr-namespace:ChappMobileV2.Publicaciones"
              x:Class="ChappMobileV2.Vistas.Perfil">
@@ -137,7 +136,7 @@
                                  BackgroundColor="Transparent"
                                  WidthRequest="30"
                                  HeightRequest="30"
-                                 Command="{Binding AbrirCrearPublicacionCommand}" 
+                                 Clicked="OnCrearPublicacionClicked"
                                  VerticalOptions="Center"
                                  HorizontalOptions="Center"/>
                             <!-- Texto debajo del botón -->
@@ -172,7 +171,7 @@
                     Padding="20"
                     CornerRadius="10"
                     HasShadow="True"
-                    IsVisible="{Binding IsCrearPublicacionVisible}"
+                    IsVisible="False"
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Margin="10">
@@ -238,15 +237,14 @@
                                     Grid.Column="0"
                                     BackgroundColor="#093A4F"
                                     Margin="20,0,20,0"
-                                    TextColor="White"
-                                    Command="{Binding GuardarPublicacionCommand}"/>
+                                    TextColor="White"/>
 
                             <Button Text="Cerrar" 
                                     Grid.Column="1"
                                     BackgroundColor="DarkRed"
                                     Margin="20,0,20,0"
                                     TextColor="White"
-                                    Command="{Binding AbrirCrearPublicacionCommand}" />
+                                    Clicked="OnCerrarCrearPublicacionClicked" />
                         </Grid>
                     </StackLayout>
                 </ScrollView>
