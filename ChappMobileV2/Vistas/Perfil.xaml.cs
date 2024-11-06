@@ -21,4 +21,10 @@ public partial class Perfil : ContentView
     {
         CrearPublicacionFrame.IsVisible = false;
     }
+
+    private async void SeleccionarImageButton_Clicked(object sender, EventArgs e)
+    {
+        var foto = await MediaPicker.PickPhotoAsync();
+        fotoImage.Source = ImageSource.FromStream(() => foto.OpenReadAsync().Result);
+    }
 }

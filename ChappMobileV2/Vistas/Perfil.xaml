@@ -185,13 +185,17 @@
                         
                         <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
                         <Image Source="user_icon.png" 
-                               WidthRequest="100"
-                               HeightRequest="100" 
+                               WidthRequest="200"
+                               HeightRequest="150"
+                               Aspect="AspectFit"
                                HorizontalOptions="Center"
+                               x:Name="fotoImage"
                                Margin="10"/>
                         
                         <Button Text="Seleccionar"
+                                x:Name="SeleccionarImageButton"
                                 BackgroundColor="#093A4F"
+                                Clicked="SeleccionarImageButton_Clicked"
                                 TextColor="White"
                                 HorizontalOptions="Center"/>
 
