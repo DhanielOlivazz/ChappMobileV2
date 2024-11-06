@@ -1,5 +1,8 @@
 using ChappMobileV2.Menus;
+using ChappMobileV2.ModelsAPI.DTOs;
+using ChappMobileV2.Controllers;
 namespace ChappMobileV2.Vistas;
+
 
 public partial class LogIn : ContentPage
 {
@@ -11,8 +14,27 @@ public partial class LogIn : ContentPage
     {
         Application.Current.MainPage = new Registro();
     }
-    private void OnLogInClicked(object sender, EventArgs e)
+    private async void OnLogInClicked(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new Menu();
+        var user = new DTO_User()
+        {
+            email = EmailEntry.Text,
+            password = PasswordEntry.Text,
+        };
+        AuthController auth = new AuthController();
+
+        var messages = await auth.Login(user);
+
+        if (messages[1] == "Inicio de sesion exitoso")
+        {
+            DisplayAlert(messages[0], messages[1], "OK");
+
+            Application.Current.MainPage = new Menu();
+        }
+        else
+        {
+            DisplayAlert(messages[0], messages[1], "OK");
+        }
+        
     }
 }

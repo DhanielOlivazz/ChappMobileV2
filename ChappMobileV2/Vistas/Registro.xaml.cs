@@ -24,9 +24,9 @@ public partial class Registro : ContentPage
 
         var messages = await auth.Register(user);
 
-        if (messages[0] == "Registro Exitoso")
+        if (messages[1] == "User created successfully.")
         {
-            DisplayAlert("Registro", "Usuario registrado con éxito", "OK");
+            DisplayAlert(messages[0], "Usuario creado con exito","OK");
             Application.Current.MainPage = new LogIn();
         }
         else
